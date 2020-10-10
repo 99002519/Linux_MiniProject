@@ -7,7 +7,6 @@ where B writes the data read from the first buffer into this one, and C reads th
 You are asked to implement such a system with 1) busy waiting synchronization mechanism; 2) semaphore. 
 Compare the above two implementations in terms of the performance (execution time), and discussion on the test cases.
 
-
 ## Building procedure
 ```
 g++ main.c -lpthread -o run-me
