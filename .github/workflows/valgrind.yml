@@ -15,4 +15,6 @@ jobs:
       run:  sudo apt-get install valgrind -y
     - uses: actions/checkout@v1
     - name: Valgrind
-      run: valgrind ./out
+      run: valgrind ./run-me
+    - name: Valgrind-2
+      run: valgrind ./run-me-2
