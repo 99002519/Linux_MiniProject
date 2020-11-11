@@ -28,8 +28,7 @@ consumed N_LOOP times.
 
 Elapsed times(in nanosecond) when process C has consumed for i times is stored in the csv files, 
 statistics_non-busy-waiting.csv and statistics_busy-waiting.csv respectively, where i is from 1 to N_LOOP. We are able
-to run the executable file for as many times as we want to compare the performance between these two implementation. 
-Every time you run the program, the statistics will be appended to the files unless you delete it manually. 
+to run the executable file for as many times as we want to compare the performance between these two implementation.  
 
 ## Sample standard output
 Use "Ctrl + C" to stop(interrupt) the program.
