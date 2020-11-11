@@ -4,8 +4,7 @@ There is buffer with size of 1 between A and B, where A writes data into the buf
 and another buffer of size 1 between B and C,
 where B writes the data read from the first buffer into this one, and C reads the data from it.
 
-You are asked to implement such a system with 1) busy waiting synchronization mechanism; 2) semaphore. 
-Compare the above two implementations in terms of the performance (execution time), and discussion on the test cases.
+Here, the implememted system is with 1) busy waiting sync mechanism 2) semaphore. 
 
 ## To build these files
 ```
@@ -31,61 +30,6 @@ Elapsed times(in nanosecond) when process C has consumed for i times is stored i
 statistics_non-busy-waiting.csv and statistics_busy-waiting.csv respectively, where i is from 1 to N_LOOP. We are able
 to run the executable file for as many times as we want to compare the performance between these two implementation. 
 Every time you run the program, the statistics will be appended to the files unless you delete it manually. 
-
-## Algorithm explanation
-Overall, it is a producer and consumer problem with two buffers. 
-Therefore, the algorithm could be briefly explained below. 
-(The explanation is based on the non-busy-waiting implementation with the semaphores mechanism, however, 
-the design is the same as the busy-waiting.)
-
-We have two pair of empty and full semaphores: sem_t empty[2], full[2], two mutexes sem_t mutex[2] & two buffer in size of 1: char buffer[2]
-
- Process A
-```
-while(1){
-    // codes to write buffer 1
-    P(&empty[0]);
-    P(&mutex[0]);
-    /* write buffer[0] */
-    V(&mutex[0]);
-    V(&full[0]);
-
-}
-```
-
-Process B
-```
-while(1){
-    // codes to read buffer 1
-    P(&full[0]);
-    P(&mutex[0]);
-    /* read buffer[0] */
-    V(&mutex[0]);
-    V(&empty[0]);
-
-
-    // codes to write buffer 2
-    P(&empty[1]);
-    P(&mutex[1]);
-    /* read buffer[0] */
-    V(&mutex[1]);
-    V(&full[1]);
-
-}
-```
-
-Process C
-```
-while(1){
-    // codes to read buffer 2
-    P(&full[1]);
-    P(&mutex[1]);
-    /* read buffer[1] */
-    V(&mutex[1]);
-    V(&empty[1]);
-
-}
-```
 
 ## Sample standard output
 Use "Ctrl + C" to stop(interrupt) the program.
